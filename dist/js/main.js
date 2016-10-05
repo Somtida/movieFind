@@ -19822,16 +19822,20 @@ var AppAcctions = {
 
 module.exports = AppAcctions;
 
-},{"../constants/AppConstants":166,"../dispatcher/AppDispatcher":167}],165:[function(require,module,exports){
+},{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168}],165:[function(require,module,exports){
 var React = require('react');
 var AppAcitons = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
+var SearchForm = require('./SearchForm');
 
 var App = React.createClass({displayName: "App",
   render: function(){
     return(
-      React.createElement("div", null, 
-        "My App"
+      React.createElement("div", {className: "container"}, 
+        React.createElement("div", {className: "jumbotron"}, 
+          React.createElement(SearchForm, null)
+
+        )
       )
     )
   }
@@ -19839,12 +19843,35 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"../actions/AppActions":164,"../stores/AppStore":169,"react":163}],166:[function(require,module,exports){
+},{"../actions/AppActions":164,"../stores/AppStore":170,"./SearchForm":166,"react":163}],166:[function(require,module,exports){
+var React = require('react');
+var AppAcitons = require('../actions/AppActions');
+var AppStore = require('../stores/AppStore');
+
+var SearchForm = React.createClass({displayName: "SearchForm",
+  render: function(){
+    return(
+      React.createElement("div", {className: "search-form"}, 
+        React.createElement("h1", {className: "text-center"}, "Search For A Movie"), 
+        React.createElement("form", {action: ""}, 
+          React.createElement("div", {className: "form-group"}, 
+            React.createElement("input", {type: "text", className: "form-control", placeholder: "Enter a Movie Title..."}), 
+            React.createElement("button", {className: "btn btn-primary btn-block"}, "Search Movie")
+          )
+        )
+      )
+    )
+  }
+})
+
+module.exports = SearchForm;
+
+},{"../actions/AppActions":164,"../stores/AppStore":170,"react":163}],167:[function(require,module,exports){
 module.exports = {
   SEARCH_MOVIES: 'SEARCH_MOVIES'
 }
 
-},{}],167:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
 
@@ -19860,7 +19887,7 @@ var AppDispatcher = assign(new Dispatcher(), {
 
 module.exports = AppDispatcher;
 
-},{"flux":3,"object-assign":5}],168:[function(require,module,exports){
+},{"flux":3,"object-assign":5}],169:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var App = require('./components/App');
@@ -19871,7 +19898,7 @@ ReactDOM.render(
   document.getElementById('app')
 )
 
-},{"./components/App":165,"./utils/appAPI.js":170,"react":163,"react-dom":7}],169:[function(require,module,exports){
+},{"./components/App":165,"./utils/appAPI.js":171,"react":163,"react-dom":7}],170:[function(require,module,exports){
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var EventEmitter = require('events').EventEmitter;
@@ -19907,7 +19934,7 @@ AppDispatcher.register(function(payload) {
 
 module.exports = AppStore;
 
-},{"../constants/AppConstants":166,"../dispatcher/AppDispatcher":167,"../utils/appAPI.js":170,"events":1,"object-assign":5}],170:[function(require,module,exports){
+},{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168,"../utils/appAPI.js":171,"events":1,"object-assign":5}],171:[function(require,module,exports){
 var AppAcctions = require('../actions/AppActions');
 
 module.exports = {
@@ -19916,4 +19943,4 @@ module.exports = {
   }
 }
 
-},{"../actions/AppActions":164}]},{},[168]);
+},{"../actions/AppActions":164}]},{},[169]);
