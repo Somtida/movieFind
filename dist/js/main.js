@@ -19829,11 +19829,16 @@ var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
 
 var App = React.createClass({displayName: "App",
-  render: function(){
+  render(){
     return(
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "jumbotron"}, 
-          React.createElement(SearchForm, null)
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "col-md-8 col-md-offset-2"}, 
+              React.createElement(SearchForm, null)
+
+            )
+          )
 
         )
       )
@@ -19849,18 +19854,23 @@ var AppAcitons = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var SearchForm = React.createClass({displayName: "SearchForm",
-  render: function(){
+  render(){
     return(
       React.createElement("div", {className: "search-form"}, 
         React.createElement("h1", {className: "text-center"}, "Search For A Movie"), 
-        React.createElement("form", {action: ""}, 
+        React.createElement("form", {onSubmit: this.onSubmit}, 
           React.createElement("div", {className: "form-group"}, 
-            React.createElement("input", {type: "text", className: "form-control", placeholder: "Enter a Movie Title..."}), 
-            React.createElement("button", {className: "btn btn-primary btn-block"}, "Search Movie")
-          )
+            React.createElement("input", {type: "text", className: "form-control", ref: "title", placeholder: "Enter a Movie Title..."})
+          ), 
+          React.createElement("button", {className: "btn btn-primary btn-block"}, "Search Movie")
         )
       )
     )
+  },
+  onSubmit(e) {
+    e.preventDefault();
+
+    console.log(this.ref.title.value);
   }
 })
 

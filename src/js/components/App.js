@@ -4,11 +4,16 @@ var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
 
 var App = React.createClass({
-  render: function(){
+  render(){
     return(
       <div className="container">
         <div className="jumbotron">
-          <SearchForm />
+          <div className="row">
+            <div className="col-md-8 col-md-offset-2">
+              <SearchForm />
+
+            </div>
+          </div>
 
         </div>
       </div>
