@@ -19816,15 +19816,21 @@ module.exports = require('./lib/React');
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 
-var AppAcctions = {
-
+var AppActions = {
+  searchMovies(movie) {
+    console.log('searching for movie '+ movie.title);
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.SEARCH_MOVIES,
+      movie: movie
+    })
+  }
 }
 
-module.exports = AppAcctions;
+module.exports = AppActions;
 
 },{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168}],165:[function(require,module,exports){
 var React = require('react');
-var AppAcitons = require('../actions/AppActions');
+var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
 
@@ -19850,19 +19856,19 @@ module.exports = App;
 
 },{"../actions/AppActions":164,"../stores/AppStore":170,"./SearchForm":166,"react":163}],166:[function(require,module,exports){
 var React = require('react');
-var AppAcitons = require('../actions/AppActions');
+var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 
 var SearchForm = React.createClass({displayName: "SearchForm",
   render(){
     return(
       React.createElement("div", {className: "search-form"}, 
-        React.createElement("h1", {className: "text-center"}, "Search For A Movie"), 
+        React.createElement("h1", {className: "text-center topHeader"}, "Search For A Movie"), 
         React.createElement("form", {onSubmit: this.onSubmit}, 
           React.createElement("div", {className: "form-group"}, 
             React.createElement("input", {type: "text", className: "form-control", ref: "title", placeholder: "Enter a Movie Title..."})
           ), 
-          React.createElement("button", {className: "btn btn-primary btn-block"}, "Search Movie")
+          React.createElement("button", {className: "btn btn-success btn-block"}, "Search Movie")
         )
       )
     )
@@ -19870,7 +19876,11 @@ var SearchForm = React.createClass({displayName: "SearchForm",
   onSubmit(e) {
     e.preventDefault();
 
-    console.log(this.ref.title.value);
+    // console.log(this.refs.title.value);
+    var movie = {
+      title: this.refs.title.value.trim()
+    }
+    AppActions.searchMovies(movie);
   }
 })
 
@@ -19891,7 +19901,7 @@ var AppDispatcher = assign(new Dispatcher(), {
       source: 'VIEW_ACTION',
       action: action
     }
-    this.dispatcher(payload);
+    this.dispatch(payload);
   }
 });
 

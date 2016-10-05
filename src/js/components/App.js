@@ -1,5 +1,5 @@
 var React = require('react');
-var AppAcitons = require('../actions/AppActions');
+var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
 
