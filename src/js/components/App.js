@@ -11,19 +11,19 @@ function getAppState() {
 
 
 var App = React.createClass({
-  getInitialState() {
+  getInitialState: function() {
     return getAppState();
   },
 
-  componentDidMount() {
+  componentDidMount: function() {
     AppStore.addChangeListener(this._onChange);
   },
 
-  componentWillUnMount() {
+  componentWillUnmount: function() {
     AppStore.removeChangeListener(this._onChange);
   },
 
-  onChange() {
+  _onChange() {
     this.setState(getAppState());
   },
 

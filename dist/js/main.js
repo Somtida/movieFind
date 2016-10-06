@@ -19822,8 +19822,16 @@ var AppActions = {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.SEARCH_MOVIES,
       movie: movie
-    })
-  }
+    });
+  },
+  receiveMovieResult(movies) {
+    console.log(movies);
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.RECEIVE_MOVIE_RESULTS,
+      movie: movie
+    });
+  },
+
 }
 
 module.exports = AppActions;
@@ -19842,19 +19850,19 @@ function getAppState() {
 
 
 var App = React.createClass({displayName: "App",
-  getInitialState() {
+  getInitialState: function() {
     return getAppState();
   },
 
-  componentDidMount() {
+  componentDidMount: function() {
     AppStore.addChangeListener(this._onChange);
   },
 
-  componentWillUnMount() {
+  componentWillUnmount: function() {
     AppStore.removeChangeListener(this._onChange);
   },
 
-  onChange() {
+  _onChange() {
     this.setState(getAppState());
   },
 
@@ -19911,7 +19919,8 @@ module.exports = SearchForm;
 
 },{"../actions/AppActions":164,"../stores/AppStore":170,"react":163}],167:[function(require,module,exports){
 module.exports = {
-  SEARCH_MOVIES: 'SEARCH_MOVIES'
+  SEARCH_MOVIES: 'SEARCH_MOVIES',
+  RECEIVE_MOVIE_RESULTS: 'RECEIVE_MOVIE_RESULTS'
 }
 
 },{}],168:[function(require,module,exports){
@@ -19971,6 +19980,7 @@ AppDispatcher.register(function(payload) {
   switch(action.actionType) {
     case AppConstants.SEARCH_MOVIES:
       console.log('searching for movie '+ action.movie.title);
+      AppAPI.searchMovies(action.movie);
       AppStore.emit(CHANGE_EVENT);
       break;
   }
@@ -19985,7 +19995,17 @@ var AppAcctions = require('../actions/AppActions');
 
 module.exports = {
   searchMovies: function(movie) {
-
+    $.ajax({
+      url: `http://www.omdbapi.com/?s=${movie.title}`,
+      dataType: 'json',
+      cache: false,
+      success: function() {
+        AppActions.receiveMovieResult(data.Search);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        alert(err);
+      }.bind(this)
+    })
   }
 }
 

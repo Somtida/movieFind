@@ -7,8 +7,16 @@ var AppActions = {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.SEARCH_MOVIES,
       movie: movie
-    })
-  }
+    });
+  },
+  receiveMovieResult(movies) {
+    console.log(movies);
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.RECEIVE_MOVIE_RESULTS,
+      movie: movie
+    });
+  },
+
 }
 
 module.exports = AppActions;
