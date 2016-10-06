@@ -19991,7 +19991,7 @@ AppDispatcher.register(function(payload) {
 module.exports = AppStore;
 
 },{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168,"../utils/appAPI.js":171,"events":1,"object-assign":5}],171:[function(require,module,exports){
-var AppAcctions = require('../actions/AppActions');
+var AppActions = require('../actions/AppActions');
 
 module.exports = {
   searchMovies: function(movie) {

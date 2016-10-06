@@ -1,4 +1,4 @@
-var AppAcctions = require('../actions/AppActions');
+var AppActions = require('../actions/AppActions');
 
 module.exports = {
   searchMovies: function(movie) {
