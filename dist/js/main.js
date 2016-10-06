@@ -19818,7 +19818,7 @@ var AppConstants = require('../constants/AppConstants');
 
 var AppActions = {
   searchMovies(movie) {
-    console.log('searching for movie '+ movie.title);
+    // console.log('searching for movie '+ movie.title);
     AppDispatcher.handleViewAction({
       actionType: AppConstants.SEARCH_MOVIES,
       movie: movie
@@ -19834,7 +19834,30 @@ var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
 
+function getAppState() {
+  return {
+
+  }
+}
+
+
 var App = React.createClass({displayName: "App",
+  getInitialState() {
+    return getAppState();
+  },
+
+  componentDidMount() {
+    AppStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnMount() {
+    AppStore.removeChangeListener(this._onChange);
+  },
+
+  onChange() {
+    this.setState(getAppState());
+  },
+
   render(){
     return(
       React.createElement("div", {className: "container"}, 
@@ -19946,7 +19969,10 @@ AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.actionType) {
-
+    case AppConstants.SEARCH_MOVIES:
+      console.log('searching for movie '+ action.movie.title);
+      AppStore.emit(CHANGE_EVENT);
+      break;
   }
 
   return true;

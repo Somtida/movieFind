@@ -25,10 +25,10 @@ AppDispatcher.register(function(payload) {
   var action = payload.action;
 
   switch(action.actionType) {
-    case AppConstants.SEARCH_MOVIES,
-    console.log('searching for movie '+ movie.title);
-    AppStore.emit(CHANGE_EVENT);
-    break;
+    case AppConstants.SEARCH_MOVIES:
+      console.log('searching for movie '+ action.movie.title);
+      AppStore.emit(CHANGE_EVENT);
+      break;
   }
 
   return true;
