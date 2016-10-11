@@ -4,9 +4,22 @@ var AppStore = require('../stores/AppStore');
 
 var Movie = React.createClass({
   render(){
+    let link = `http://www.imdb.com/title/${this.props.movie.imdbID}`
     return(
       <div className="well">
-        {this.props.movie.Title}
+        <div className="row">
+          <div className="col-md-4">
+            <img className="thumbnail" src={this.props.movie.Poster} alt="poster" />
+          </div>
+          <div className="col-md-8">
+            <h4>{this.props.movie.Title}</h4>
+            <ul className="list-group">
+              <li className="list-group-item">Year Released: {this.props.movie.Year}</li>
+              <li className="list-group-item">IMDB ID Released: {this.props.movie.imdbID}</li>
+            </ul>
+            <a href={link} className="btn btn-primary">View on IMDB</a>
+          </div>
+        </div>
       </div>
     )
   }

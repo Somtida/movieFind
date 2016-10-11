@@ -19877,11 +19877,11 @@ var App = React.createClass({displayName: "App",
             React.createElement("div", {className: "col-md-8 col-md-offset-2"}, 
               React.createElement(SearchForm, null)
             )
-          ), 
-          React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "text-center"}, 
-              movieResults
-            )
+          )
+        ), 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "text-center"}, 
+            movieResults
           )
         )
       )
@@ -19898,9 +19898,22 @@ var AppStore = require('../stores/AppStore');
 
 var Movie = React.createClass({displayName: "Movie",
   render(){
+    let link = `http://www.imdb.com/title/${this.props.movie.imdbID}`
     return(
       React.createElement("div", {className: "well"}, 
-        this.props.movie.Title
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "col-md-4"}, 
+            React.createElement("img", {className: "thumbnail", src: this.props.movie.Poster, alt: "poster"})
+          ), 
+          React.createElement("div", {className: "col-md-8"}, 
+            React.createElement("h4", null, this.props.movie.Title), 
+            React.createElement("ul", {className: "list-group"}, 
+              React.createElement("li", {className: "list-group-item"}, "Year Released: ", this.props.movie.Year), 
+              React.createElement("li", {className: "list-group-item"}, "IMDB ID Released: ", this.props.movie.imdbID)
+            ), 
+            React.createElement("a", {href: link, className: "btn btn-primary"}, "View on IMDB")
+          )
+        )
       )
     )
   }

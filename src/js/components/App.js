@@ -39,10 +39,10 @@ var App = React.createClass({
               <SearchForm />
             </div>
           </div>
-          <div className="row">
-            <div className="text-center">
-              {movieResults}
-            </div>
+        </div>
+        <div className="row">
+          <div className="text-center">
+            {movieResults}
           </div>
         </div>
       </div>
