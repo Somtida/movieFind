@@ -2,6 +2,7 @@ var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
+var MovieResults = require('./MovieResults');
 
 function getAppState() {
   return {
@@ -35,7 +36,7 @@ var App = React.createClass({
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
               <SearchForm />
-
+              <MovieResults />
             </div>
           </div>
 

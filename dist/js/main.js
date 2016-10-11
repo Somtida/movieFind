@@ -19836,11 +19836,12 @@ var AppActions = {
 
 module.exports = AppActions;
 
-},{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168}],165:[function(require,module,exports){
+},{"../constants/AppConstants":168,"../dispatcher/AppDispatcher":169}],165:[function(require,module,exports){
 var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
 var SearchForm = require('./SearchForm');
+var MovieResults = require('./MovieResults');
 
 function getAppState() {
   return {
@@ -19873,8 +19874,8 @@ var App = React.createClass({displayName: "App",
         React.createElement("div", {className: "jumbotron"}, 
           React.createElement("div", {className: "row"}, 
             React.createElement("div", {className: "col-md-8 col-md-offset-2"}, 
-              React.createElement(SearchForm, null)
-
+              React.createElement(SearchForm, null), 
+              React.createElement(MovieResults, null)
             )
           )
 
@@ -19886,7 +19887,25 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"../actions/AppActions":164,"../stores/AppStore":170,"./SearchForm":166,"react":163}],166:[function(require,module,exports){
+},{"../actions/AppActions":164,"../stores/AppStore":171,"./MovieResults":166,"./SearchForm":167,"react":163}],166:[function(require,module,exports){
+var React = require('react');
+var AppActions = require('../actions/AppActions');
+var AppStore = require('../stores/AppStore');
+
+var MovieResults = React.createClass({displayName: "MovieResults",
+  render(){
+    return(
+      React.createElement("div", null, 
+        "results"
+      )
+    )
+  }
+  
+})
+
+module.exports = MovieResults;
+
+},{"../actions/AppActions":164,"../stores/AppStore":171,"react":163}],167:[function(require,module,exports){
 var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
@@ -19918,13 +19937,13 @@ var SearchForm = React.createClass({displayName: "SearchForm",
 
 module.exports = SearchForm;
 
-},{"../actions/AppActions":164,"../stores/AppStore":170,"react":163}],167:[function(require,module,exports){
+},{"../actions/AppActions":164,"../stores/AppStore":171,"react":163}],168:[function(require,module,exports){
 module.exports = {
   SEARCH_MOVIES: 'SEARCH_MOVIES',
   RECEIVE_MOVIE_RESULTS: 'RECEIVE_MOVIE_RESULTS'
 }
 
-},{}],168:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 var Dispatcher = require('flux').Dispatcher;
 var assign = require('object-assign');
 
@@ -19940,7 +19959,7 @@ var AppDispatcher = assign(new Dispatcher(), {
 
 module.exports = AppDispatcher;
 
-},{"flux":3,"object-assign":5}],169:[function(require,module,exports){
+},{"flux":3,"object-assign":5}],170:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var App = require('./components/App');
@@ -19951,7 +19970,7 @@ ReactDOM.render(
   document.getElementById('app')
 )
 
-},{"./components/App":165,"./utils/appAPI.js":171,"react":163,"react-dom":7}],170:[function(require,module,exports){
+},{"./components/App":165,"./utils/appAPI.js":172,"react":163,"react-dom":7}],171:[function(require,module,exports){
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
 var EventEmitter = require('events').EventEmitter;
@@ -20001,7 +20020,7 @@ AppDispatcher.register(function(payload) {
 
 module.exports = AppStore;
 
-},{"../constants/AppConstants":167,"../dispatcher/AppDispatcher":168,"../utils/appAPI.js":171,"events":1,"object-assign":5}],171:[function(require,module,exports){
+},{"../constants/AppConstants":168,"../dispatcher/AppDispatcher":169,"../utils/appAPI.js":172,"events":1,"object-assign":5}],172:[function(require,module,exports){
 var AppActions = require('../actions/AppActions');
 
 module.exports = {
@@ -20020,4 +20039,4 @@ module.exports = {
   }
 }
 
-},{"../actions/AppActions":164}]},{},[169]);
+},{"../actions/AppActions":164}]},{},[170]);
