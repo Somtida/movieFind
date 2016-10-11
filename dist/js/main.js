@@ -19828,7 +19828,7 @@ var AppActions = {
     console.log(movies);
     AppDispatcher.handleViewAction({
       actionType: AppConstants.RECEIVE_MOVIE_RESULTS,
-      movie: movie
+      movies: movies
     });
   },
 
