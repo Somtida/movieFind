@@ -6,7 +6,7 @@ module.exports = {
       url: `http://www.omdbapi.com/?s=${movie.title}`,
       dataType: 'json',
       cache: false,
-      success: function() {
+      success: function(data) {
         AppActions.receiveMovieResult(data.Search);
       }.bind(this),
       error: function(xhr, status, err) {

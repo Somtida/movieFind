@@ -19844,7 +19844,7 @@ var SearchForm = require('./SearchForm');
 
 function getAppState() {
   return {
-
+    movies: AppStore.getMovieResults()
   }
 }
 
@@ -19867,6 +19867,7 @@ var App = React.createClass({displayName: "App",
   },
 
   render(){
+    // console.log(movies);
     return(
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "jumbotron"}, 
@@ -20009,7 +20010,7 @@ module.exports = {
       url: `http://www.omdbapi.com/?s=${movie.title}`,
       dataType: 'json',
       cache: false,
-      success: function() {
+      success: function(data) {
         AppActions.receiveMovieResult(data.Search);
       }.bind(this),
       error: function(xhr, status, err) {
