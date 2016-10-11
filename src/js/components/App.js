@@ -30,7 +30,7 @@ var App = React.createClass({
 
   render(){
     // console.log(this.state.movies);
-    let movieResults = this.state.movies == '' ? '' : <MovieResults />;
+    let movieResults = this.state.movies == '' ? '' : <MovieResults movies={this.state.movies} />;
     return(
       <div className="container">
         <div className="jumbotron">

@@ -6,11 +6,15 @@ var MovieResults = React.createClass({
   render(){
     return(
       <div>
-        results
+        <h3 className="text-center">Results</h3>
+        { this.props.movies.map((movie, i) => {
+            return <Movie movie={movie} key={i} />
+          })
+        }
       </div>
     )
   }
-  
+
 })
 
 module.exports = MovieResults;

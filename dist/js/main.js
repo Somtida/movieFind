@@ -19869,7 +19869,7 @@ var App = React.createClass({displayName: "App",
 
   render(){
     // console.log(this.state.movies);
-    let movieResults = this.state.movies == '' ? '' : React.createElement(MovieResults, null);
+    let movieResults = this.state.movies == '' ? '' : React.createElement(MovieResults, {movies: this.state.movies});
     return(
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "jumbotron"}, 
@@ -19900,11 +19900,14 @@ var MovieResults = React.createClass({displayName: "MovieResults",
   render(){
     return(
       React.createElement("div", null, 
-        "results"
+        React.createElement("h3", {className: "text-center"}, "Results")
+        
+          
+        
       )
     )
   }
-  
+
 })
 
 module.exports = MovieResults;
