@@ -10,7 +10,7 @@ var AppActions = {
     });
   },
   receiveMovieResult(movies) {
-    console.log(movies);
+    // console.log(movies);
     AppDispatcher.handleViewAction({
       actionType: AppConstants.RECEIVE_MOVIE_RESULTS,
       movies: movies
