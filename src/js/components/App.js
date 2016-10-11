@@ -28,7 +28,7 @@ var App = React.createClass({
   },
 
   render(){
-    // console.log(movies);
+    console.log(this.state.movies);
     return(
       <div className="container">
         <div className="jumbotron">

@@ -19867,7 +19867,7 @@ var App = React.createClass({displayName: "App",
   },
 
   render(){
-    // console.log(movies);
+    console.log(this.state.movies);
     return(
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "jumbotron"}, 
