@@ -19868,17 +19868,21 @@ var App = React.createClass({displayName: "App",
   },
 
   render(){
-    console.log(this.state.movies);
+    // console.log(this.state.movies);
+    let movieResults = this.state.movies == '' ? '' : React.createElement(MovieResults, null);
     return(
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "jumbotron"}, 
           React.createElement("div", {className: "row"}, 
             React.createElement("div", {className: "col-md-8 col-md-offset-2"}, 
-              React.createElement(SearchForm, null), 
-              React.createElement(MovieResults, null)
+              React.createElement(SearchForm, null)
+            )
+          ), 
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "text-center"}, 
+              movieResults
             )
           )
-
         )
       )
     )

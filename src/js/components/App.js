@@ -29,17 +29,21 @@ var App = React.createClass({
   },
 
   render(){
-    console.log(this.state.movies);
+    // console.log(this.state.movies);
+    let movieResults = this.state.movies == '' ? '' : <MovieResults />;
     return(
       <div className="container">
         <div className="jumbotron">
           <div className="row">
             <div className="col-md-8 col-md-offset-2">
               <SearchForm />
-              <MovieResults />
             </div>
           </div>
-
+          <div className="row">
+            <div className="text-center">
+              {movieResults}
+            </div>
+          </div>
         </div>
       </div>
     )
